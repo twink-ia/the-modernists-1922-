@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modernismo</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+body{
+    margin:0;
+    background:#dcdcdc;
+    display:flex;
+    justify-content:center;
+    padding:15px;
+    font-family:'Patrick Hand', cursive;
+}
+
+.caderno{
+    width:100%;
+    max-width:600px;
+    padding:30px 20px 30px 50px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    line-height:32px;
+    font-size:18px;
+    position:relative;
+    background-image:
+        repeating-linear-gradient(
+            to bottom,
+            white,
+            white 30px,
+            #b3d1ff 31px
+        );
+}
+
+.caderno::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:35px;
+    width:3px;
+    height:100%;
+    background:#ff4d4d;
+}
+
+h1{
+    text-align:center;
+    font-size:26px;
+}
+
+.texto{
+    white-space:pre-line;
+}
+
+.aviso{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#111;
+    color:white;
+    padding:12px 25px;
+    border-radius:30px;
+    opacity:0;
+    transition:0.3s;
+    font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<div class="caderno">
+<h1>Modernismo no Brasil</h1>
+
+<div class="texto" id="texto">
+O Modernismo foi um movimento cultural que surgiu no início do século XX (1900-1999) e trouxe uma grande transformação na arte, na literatura e na forma de pensar o Brasil. Os modernistas queriam romper com os padrões antigos, que imitavam muito a Europa, e criar algo novo, que mostrasse a realidade e a identidade do país. Eles valorizavam a cultura brasileira, o cotidiano, o folclore e as diferenças regionais, e buscavam liberdade de expressão, inovação e criatividade.
+
+No Brasil, o marco do Modernismo foi a Semana de Arte Moderna, realizada em fevereiro de 1922, no Theatro Municipal de São Paulo, durante as comemorações do centenário da Independência do Brasil. O evento reuniu escritores, pintores, músicos e artistas importantes, como Mário de Andrade, Oswald de Andrade, Anita Malfatti, Tarsila do Amaral e Menotti Del Picchia.
+
+O Modernismo brasileiro tinha como principais características a valorização da identidade nacional, o rompimento com modelos europeus, a liberdade criativa e a inovação nas artes e na literatura. Além disso, muitas obras passaram a abordar questões sociais e a realidade do povo brasileiro.
+
+O legado do Modernismo é enorme. Ele abriu caminho para novas formas de expressão artística e ajudou a construir uma identidade cultural própria para o Brasil, influenciando gerações ao longo do século XX.
+</div>
+</div>
+
+<div class="aviso" id="aviso">Texto copiado!</div>
+
+<script>
+let timer;
+const texto = document.getElementById("texto");
+const aviso = document.getElementById("aviso");
+
+texto.addEventListener("touchstart", () => {
+    timer = setTimeout(copiarTexto, 700);
+});
+
+texto.addEventListener("touchend", () => {
+    clearTimeout(timer);
+});
+
+texto.addEventListener("mousedown", () => {
+    timer = setTimeout(copiarTexto, 700);
+});
+
+texto.addEventListener("mouseup", () => {
+    clearTimeout(timer);
+});
+
+function copiarTexto(){
+    navigator.clipboard.writeText(texto.innerText).then(()=>{
+        aviso.style.opacity="1";
+        setTimeout(()=>{
+            aviso.style.opacity="0";
+        },1500);
+    });
+}
+</script>
+
+</body>
+</html>
